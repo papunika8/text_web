@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>The first app on Gin WAF </title>
+</head>
+
+<body>
+    <div class="test">
+        <form method="post" action="/big">
+            <p><input type="submit" value="大文字" style="float:left"></p>
+        </form>
+        <form method="post" action="/small">
+            <p><input type="submit" value="小文字" style="float:left"></p>
+        </form>
+        <form method="post" action="/grep" style="float:left">
+            <textarea name="grep"></textarea>
+            <p><input type="submit" value="grep"></p>
+        </form>
+        </form>
+        <form method="post" action="/sed" style="float:left">
+            <textarea name="before"></textarea>
+            <textarea name="after"></textarea>
+            <p><input type="submit" value="sed"></p>
+        </form>
+    </div>
+
+    <div style="display:inline-flex" class="test">
+        <form method="post" action="/w">
+            <textarea name="csv" rows="10" style="width:500px" required="required">{{ range .csvData }}
+{{.Data}}{{end}}</textarea><br>
+            <input type="submit" value="送信">
+        </form>
+        <form method="post" action="/w">
+            <textarea name="csv" rows="10" style="width:500px" required="required">{{ range .csvData_c }}
+{{.Data}}{{end}}</textarea><br>
+            <input type="submit" value="送信">
+        </form>
+    </div>
+
+    <form method="post" action="/delete">
+        <p><input type="submit" value="削除"></p>
+        <p><a href="/">戻る</a></p>
+    </form>
+
+    <ul>
+        {{ range .csvData }}
+        <li>{{.Num}} : {{.Data}}</li>
+        {{ end }}
+    </ul>
+
+
+</body>
+
+</html>
